@@ -40,6 +40,8 @@ def handle_html(cookie, url):
                 f.truncate()
 
         selector = etree.HTML(resp.content)
+        if selector is None:
+            logger.error(f'响应内容：{resp.content}，STATUSCODE: {resp.status_code}')
         return selector
     except Exception as e:
         logger.exception(e)

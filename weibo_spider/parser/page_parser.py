@@ -44,6 +44,9 @@ class PageParser(Parser):
         is_exist = ''
         for i in range(3):
             self.selector = handle_html(self.cookie, self.url)
+            if self.selector is None:
+                logging.error(f'解析URL失败，URL={self.url}')
+                continue
             info = self.selector.xpath("//div[@class='c']")
             if info is None or len(info) == 0:
                 continue
